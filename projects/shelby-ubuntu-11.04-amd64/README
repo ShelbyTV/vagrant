@@ -1,0 +1,11 @@
+This is a vagrant project for creating a box ready to install and run the Shelby rails app on Ubuntu 11.04 for amd64.
+
+---------------------------------------------------------------------------------------------------------------------
+
+NOTE: If you want to modify and repackage the box, there is a fix needed to allow host only networking to work on
+the newly packaged box:
+
+Just before packaging the box, ssh into the running VM and delete /etc/udev/rules.d/70-persistent-net.rules  This
+will prevent the packaged box from having an improper MAC address set on its interfaces when booting up.
+
+This fix was found at: https://github.com/mitchellh/vagrant/issues/454
