@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# This file contains configuration to be automatically set on the
+# packaged box. It should be included when packaging this project
+# as follows:
+#
+# $ vagrant package --vagrantfile Vagrantfile.package
+
+Vagrant::Config.run do |config|
+  # Assign this VM to a host only network IP, allowing you to access it
+  # via the IP.
+  config.vm.network "33.33.33.10"
+
+  # Share an additional folder to the guest VM. The first argument is
+  # an identifier, the second is the path on the guest to mount the
+  # folder, and the third is the path on the host to the actual folder.
+  config.vm.share_folder "ShelbyTV", "/shelbytv", "~/ShelbyTV"
+end
