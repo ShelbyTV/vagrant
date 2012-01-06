@@ -24,7 +24,13 @@ package "gettext" do
 	action :install
 end
 
+# we need NFS for better-performing Vagrant shared folders
+package "nfs-common" do
+  action :install
+end
+
 # invoke recipes to install all necessary components
+require_recipe "git"
 require_recipe "redis::server"
 require_recipe "memcached"
 require_recipe "mongodb::10gen_repo"
@@ -36,3 +42,9 @@ node['rvm']['user_installs'] = [
   }
 ]
 require_recipe "rvm::user"
+
+# delete the persistent interfaces file to avoid host-only networking
+# problems when re-packaging the box
+file "/etc/udev/rules.d/70-persistent-net.rules" do
+  action :delete
+end

@@ -9,3 +9,10 @@ Just before packaging the box, ssh into the running VM and delete /etc/udev/rule
 will prevent the packaged box from having an improper MAC address set on its interfaces when booting up.
 
 This fix was found at: https://github.com/mitchellh/vagrant/issues/454
+
+---------------------------------------------------------------------------------------------------------------------
+
+Here's how to update the VirtualBox Guest Additions if you've got a newer version of VirtualBox than the one your
+vagrant box was packaged for:
+
+http://till.klampaeckel.de/blog/archives/155-VirtualBox-Guest-Additions-and-vagrant.html
