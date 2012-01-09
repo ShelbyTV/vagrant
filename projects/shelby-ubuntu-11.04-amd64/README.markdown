@@ -5,8 +5,11 @@ This is a vagrant project for creating a box ready to install and run the Shelby
 * v0.1
     First version of the box
 * v0.2
+
     Switched to use NFS mounting by default for vagrant shared folder
+    
     Added environment variables to the Vagrantfile to allow dynamic configuration of shared folder
+    
     Installed latest version (1.4.8) of VirtualBox Guest Extensions on the packaged box
 
 ---
