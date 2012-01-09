@@ -1,8 +1,19 @@
 This is a vagrant project for creating a box ready to install and run the Shelby rails app on Ubuntu 11.04 for amd64.
 
----------------------------------------------------------------------------------------------------------------------
+# CHANGELOG:
 
-NOTE: If you want to modify and repackage the box, there is a fix needed to allow host only networking to work on
+* v0.1
+    First version of the box
+* v0.2
+    Switched to use NFS mounting by default for vagrant shared folder
+    Added environment variables to the Vagrantfile to allow dynamic configuration of shared folder
+    Installed latest version (1.4.8) of VirtualBox Guest Extensions on the packaged box
+
+---
+
+# NOTES
+
+If you want to modify and repackage the box, there is a fix needed to allow host only networking to work on
 the newly packaged box:
 
 Just before packaging the box, ssh into the running VM and delete /etc/udev/rules.d/70-persistent-net.rules  This
@@ -10,7 +21,7 @@ will prevent the packaged box from having an improper MAC address set on its int
 
 This fix was found at: https://github.com/mitchellh/vagrant/issues/454
 
----------------------------------------------------------------------------------------------------------------------
+---
 
 Here's how to update the VirtualBox Guest Additions if you've got a newer version of VirtualBox than the one your
 vagrant box was packaged for:
