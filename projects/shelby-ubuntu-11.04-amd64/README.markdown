@@ -3,7 +3,9 @@ This is a vagrant project for creating a box ready to install and run the Shelby
 # CHANGELOG:
 
 * v0.1
-    First version of the box
+
+	First version of the box
+
 * v0.2
 
     Switched to use NFS mounting by default for vagrant shared folder
