@@ -16,8 +16,4 @@ node['rvm']['user_installs'] = [
 ]
 require_recipe "rvm::user"
 
-# install passenger and configure for nginx
-node['rvm_passenger']['rvm_ruby'] = "#{node['rvm']['default_rvm']}"
-require_recipe "rvm_passenger::nginx"
-
 require_recipe "shelby::rails"
