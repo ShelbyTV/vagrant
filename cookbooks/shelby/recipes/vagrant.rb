@@ -8,13 +8,6 @@
 #
 # These are items specific to the Shelby vagrant box
 
-require_recipe "shelby::rails"
-
-# we need NFS for better-performing Vagrant shared folders
-package "nfs-common" do
-  action :install
-end
-
 # install rvm for the vagrant user with 1.9.2 as the default ruby
 node['rvm']['user_installs'] = [
   { 'user'          => 'vagrant',
@@ -22,6 +15,13 @@ node['rvm']['user_installs'] = [
   }
 ]
 require_recipe "rvm::user"
+
+require_recipe "shelby::rails"
+
+# we need NFS for better-performing Vagrant shared folders
+package "nfs-common" do
+  action :install
+end
 
 # delete the persistent interfaces file to avoid host-only networking
 # problems when re-packaging the box
