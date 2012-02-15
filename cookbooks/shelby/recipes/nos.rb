@@ -8,8 +8,6 @@
 #
 # Recipe specific to the real Shelby servers (for now just staging)
 
-require_recipe "shelby::rails"
-
 # install rvm for the nos user with 1.9.2 as the default ruby
 node['rvm']['user_installs'] = [
   { 'user'          => 'nos',
@@ -17,3 +15,9 @@ node['rvm']['user_installs'] = [
   }
 ]
 require_recipe "rvm::user"
+
+# install passenger and configure for nginx
+node['rvm_passenger']['rvm_ruby'] = "#{node['rvm']['default_rvm']}"
+require_recipe "rvm_passenger::nginx"
+
+require_recipe "shelby::rails"
