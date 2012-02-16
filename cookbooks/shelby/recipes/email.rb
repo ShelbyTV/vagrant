@@ -14,6 +14,7 @@ node[:postfix][:smtp_sasl_security_options] = "noanonymous"
 node[:postfix][:smtp_use_tls]  = "no"
 node[:postfix][:header_size_limit] = 4096000
 node[:postfix][:relayhost]  = "[smtp.sendgrid.net]:25"
+node[:postfix][:mydomain]   = "shelby.tv"
 
 require_recipe "postfix"
 
