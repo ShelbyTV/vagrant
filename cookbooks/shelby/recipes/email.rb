@@ -8,17 +8,15 @@
 #
 # Set up an email server to queue and send mail from the Shelby rails app server
 
-# configure and install postfix to relay to sendgrid
-node[:postfix][:smtp_sasl_auth_enable] = "yes"
-node[:postfix][:smtp_sasl_security_options] = "noanonymous"
-node[:postfix][:smtp_use_tls]  = "no"
-node[:postfix][:header_size_limit] = 4096000
-node[:postfix][:relayhost]  = "[smtp.sendgrid.net]:25"
-node[:postfix][:mydomain]   = "shelby.tv"
+# create the nos user
+require_recipe "shelby::nos_user"
 
-require_recipe "postfix"
+# install rvm for the nos user with 1.9.2 as the default ruby
+node['rvm']['user_installs'] = [
+  { 'user'          => 'nos',
+    'default_ruby'  => '1.9.2'
+  }
+]
+require_recipe "rvm::user"
 
-node[:postfix][:smtp_sasl_user_name] = "smtp_login@shelby.tv"
-node[:postfix][:smtp_sasl_passwd]    = "$h3lby"
-
-require_recipe "postfix::sasl_auth"
+require_recipe "shelby::postfix"

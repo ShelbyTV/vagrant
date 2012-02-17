@@ -17,6 +17,7 @@ node['rvm']['user_installs'] = [
 require_recipe "rvm::user"
 
 require_recipe "shelby::rails"
+require_recipe "shelby::postfix"
 
 # we need NFS for better-performing Vagrant shared folders
 package "nfs-common" do
