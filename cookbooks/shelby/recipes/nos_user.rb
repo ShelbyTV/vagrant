@@ -8,6 +8,11 @@
 #
 # Recipe to create the nos user
 
+# we need ruby-shadow in order to create a user using a hashed password
+package "libshadow-ruby1.8" do
+	action :install
+end
+
 user "nos" do
   home "/home/nos"
   shell "/bin/bash"
