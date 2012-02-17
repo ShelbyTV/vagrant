@@ -19,4 +19,5 @@ node['rvm']['user_installs'] = [
 ]
 require_recipe "rvm::user"
 
+require_recipe "shelby::memcached-pre"
 require_recipe "shelby::postfix"

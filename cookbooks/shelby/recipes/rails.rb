@@ -15,14 +15,7 @@ package "libcurl4-gnutls-dev" do
 	action :install
 end
 
-# libsasl2-dev and gettext required by memcached gem
-package "libsasl2-dev" do
-	action :install
-end
-
-package "gettext" do
-	action :install
-end
+require_recipe "shelby::memcached-pre"
 
 # invoke recipes to install all necessary components
 require_recipe "git"
