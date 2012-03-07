@@ -16,6 +16,8 @@ This is a vagrant project for creating a box ready to install and run the Shelby
 
 * v0.2.1
 
+    Upgraded to work with newest version of Vagrant (1.0.0)
+
     Added onboard Postfix server for relaying emails to SendGrid
 
     Fixed environment variables for the Vagrantfile so that specifying NFS or VirtualBox shared folders works
