@@ -15,8 +15,7 @@ Vagrant::Config.run do |config|
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
-  hostShelbyFolder = ENV["shelby_folder"] || "~/ShelbyTV"
-  useNFS = ENV["use_nfs"]
-  useNFS = true if (useNFS == nil)
-  config.vm.share_folder "ShelbyTV", "/shelbytv", hostShelbyFolder, :nfs => useNFS
+  host_shelby_folder = ENV["shelby_folder"] || "~/ShelbyTV"
+  use_nfs = !ENV["use_virtual_box_shared_folders"]
+  config.vm.share_folder "ShelbyTV", "/shelbytv", host_shelby_folder, :nfs => use_nfs
 end

@@ -16,10 +16,9 @@ Vagrant::Config.run do |config|
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
-  hostShelbyFolder = ENV["shelby_folder"] || "~/ShelbyTV"
-  useNFS = ENV["use_nfs"]
-  useNFS = true if (useNFS == nil)
-  config.vm.share_folder "ShelbyTV", "/shelbytv", hostShelbyFolder, :nfs => useNFS
+  host_shelby_folder = ENV["shelby_folder"] || "~/ShelbyTV"
+  use_nfs = !ENV["use_virtual_box_shared_folders"]
+  config.vm.share_folder "ShelbyTV", "/shelbytv", host_shelby_folder, :nfs => use_nfs
 
   config.package.name = "shelby-ubuntu-11.04-amd64.box"
 
@@ -28,7 +27,7 @@ Vagrant::Config.run do |config|
   #
   config.vm.provision :chef_solo do |chef|
   #  chef.log_level = "debug"
-    chef.cookbooks_path = "../../chef-cookbooks"
+    chef.cookbooks_path = "../../cookbooks"
     chef.add_recipe "shelby"
   end
 end
