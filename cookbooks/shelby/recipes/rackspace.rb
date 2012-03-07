@@ -8,6 +8,8 @@
 #
 # Recipe specific to the real Shelby rails app servers (for now just staging)
 
+require_recipe "shelby::common"
+
 # create the nos user
 require_recipe "shelby::nos_user"
 

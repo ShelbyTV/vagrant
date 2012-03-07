@@ -8,10 +8,12 @@
 #
 # These are items specific to the Shelby vagrant box
 
+require_recipe "shelby::common"
+
 # install rvm for the vagrant user with 1.9.2 as the default ruby
 node['rvm']['user_installs'] = [
   { 'user'          => 'vagrant',
-    'default_ruby'  => '1.9.2'
+    'default_ruby'  => node['rvm']['user_default_ruby']
   }
 ]
 require_recipe "rvm::user"

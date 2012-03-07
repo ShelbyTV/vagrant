@@ -8,8 +8,6 @@
 #
 # These are items for any box that will run the shelby rails app
 
-require_recipe "shelby::common"
-
 # install additional packages required by the shelby rails app
 package "libcurl4-gnutls-dev" do
 	action :install
