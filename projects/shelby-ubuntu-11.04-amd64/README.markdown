@@ -14,6 +14,12 @@ This is a vagrant project for creating a box ready to install and run the Shelby
     
     Installed latest version (1.4.8) of VirtualBox Guest Extensions on the packaged box
 
+* v0.2.1
+
+    Added onboard Postfix server for relaying emails to SendGrid
+
+    Fixed environment variables for the Vagrantfile so that specifying NFS or VirtualBox shared folders works
+
 ---
 
 # NOTES
