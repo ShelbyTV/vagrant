@@ -27,7 +27,7 @@ group "sudo" do
   members ['nos']
 end
 
-# install rvm for the nos user with 1.9.2 as the default ruby
+# install rvm for the nos user
 node['rvm']['user_installs'] = [
   { 'user'          => 'nos',
     'default_ruby'  => node['shelby']['user_default_ruby']
