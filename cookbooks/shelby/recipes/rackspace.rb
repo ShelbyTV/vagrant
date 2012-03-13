@@ -11,6 +11,7 @@
 require_recipe "shelby::common"
 
 # create the nos user
+node['shelby']['user_rubies'] = ['ruby-1.9.3']
 require_recipe "shelby::nos_user"
 
 require_recipe "shelby::rails"

@@ -30,7 +30,8 @@ end
 # install rvm for the nos user with 1.9.2 as the default ruby
 node['rvm']['user_installs'] = [
   { 'user'          => 'nos',
-    'default_ruby'  => node['rvm']['user_default_ruby']
+    'default_ruby'  => node['shelby']['user_default_ruby']
+    'rubies'        => node['shelby']['user_rubies']
   }
 ]
 require_recipe "rvm::user"
