@@ -25,43 +25,15 @@ def load_current_resource
   @rvm_env      = ::RVM::ChefUserEnvironment.new(new_resource.user)
 end
 
-action :install do
-  # add gem entry into global.gems
-  update_global_gems_file :create
+[:install, :upgrade, :remove, :purge].each do |exec_action|
+  action exec_action do
+    # add gem entry into global.gems
+    update_global_gems_file exec_action
 
-  # install gem in all rubies in global gemsets
-  installed_rubies.each do |rubie|
-    gem_package_wrapper :install, "#{rubie}@global"
-  end
-end
-
-action :upgrade do
-  # add gem entry into global.gems
-  update_global_gems_file :create
-
-  # upgrade gem in all rubies in global gemsets
-  installed_rubies.each do |rubie|
-    gem_package_wrapper :upgrade, "#{rubie}@global"
-  end
-end
-
-action :remove do
-  # remove gem entry from global.gems
-  update_global_gems_file :remove
-
-  # remove gem in all rubies in global gemsets
-  installed_rubies.each do |rubie|
-    gem_package_wrapper :remove, "#{rubie}@global"
-  end
-end
-
-action :purge do
-  # remove gem entry from global.gems
-  update_global_gems_file :remove
-
-  # remove gem in all rubies in global gemsets
-  installed_rubies.each do |rubie|
-    gem_package_wrapper :purge, "#{rubie}@global"
+    # install gem in all rubies in global gemsets
+    installed_rubies.each do |rubie|
+      gem_package_wrapper exec_action, "#{rubie}@global"
+    end
   end
 end
 
@@ -83,6 +55,7 @@ def gem_package_wrapper(exec_action, ruby_global_gemset)
     action      :nothing
   end
   g.run_action(exec_action)
+  new_resource.updated_by_last_action(true) if g.updated_by_last_action?
 end
 
 ##
@@ -90,7 +63,11 @@ end
 #
 # @oaram [Symbol] action to :create or :remove the gem from the file
 def update_global_gems_file(exec_action)
-  gem               = new_resource.package_name
+  gem               = if new_resource.version
+                        "#{new_resource.package_name} -v#{new_resource.version}"
+                      else
+                        new_resource.package_name
+                      end
   user_dir          = Etc.getpwnam(new_resource.user).dir if new_resource.user
   global_gems_file  = if new_resource.user
                         "#{user_dir}/.rvm/gemsets/global.gems"
@@ -98,7 +75,7 @@ def update_global_gems_file(exec_action)
                         "#{node['rvm']['root_path']}/gemsets/global.gems"
                       end
 
-  if exec_action == :create
+  if [:install, :upgrade].include?(exec_action)
     e = execute "Add #{gem} to #{global_gems_file}" do
       if new_resource.user
         user    new_resource.user
@@ -115,5 +92,6 @@ def update_global_gems_file(exec_action)
       not_if    %{grep -q "^#{gem}" "#{global_gems_file}"}
     end
     e.run_action(:run)
+    new_resource.updated_by_last_action(true) if e.updated_by_last_action?
   end
 end

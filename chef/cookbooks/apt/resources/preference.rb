@@ -1,10 +1,8 @@
 #
-# Cookbook Name:: rvm
-# Resource:: gemset
+# Cookbook Name:: apt
+# Resource:: preference
 #
-# Author:: Fletcher Nichol <fnichol@nichol.ca>
-#
-# Copyright 2011, Fletcher Nichol
+# Copyright 2010-2011, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,14 +17,13 @@
 # limitations under the License.
 #
 
-actions :create, :delete, :empty, :update
-
-attribute :gemset,      :kind_of => String, :name_attribute => true
-attribute :ruby_string, :kind_of => String, :regex => /^[^@]+$/
-attribute :user,        :kind_of => String
-attribute :patch,       :kind_of => String
+actions :add, :remove
 
 def initialize(*args)
   super
-  @action = :create
+  @action = :add
 end
+
+attribute :package_name, :kind_of => String, :name_attribute => true
+attribute :pin, :kind_of => String
+attribute :pin_priority, :kind_of => String
