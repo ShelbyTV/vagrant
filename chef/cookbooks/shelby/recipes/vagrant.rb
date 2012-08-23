@@ -31,4 +31,5 @@ end
 # problems when re-packaging the box
 file "/etc/udev/rules.d/70-persistent-net.rules" do
   action :delete
+  ignore_failure true
 end

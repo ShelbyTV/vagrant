@@ -2,17 +2,27 @@ This is a vagrant project for creating a box ready to install and run the Shelby
 
 # CHANGELOG:
 
-* v0.1
+* v0.2.2
 
-	First version of the box
+	Upgraded Chef gem to latest version (10.12.0)
 
-* v0.2
+	Installed latest version (4.1.20) of VirtualBox Guest Extensions
 
-    Switched to use NFS mounting by default for vagrant shared folder
-    
-    Added environment variables to the Vagrantfile to allow dynamic configuration of shared folder
-    
-    Installed latest version (1.4.8) of VirtualBox Guest Extensions on the packaged box
+	ssh agent forwarding turned on by default in the packaged box
+
+	Webrick hacks
+
+		remove excessive logger warnings
+
+		turn off reverse DNS lookup to speed up request handling
+
+	Added new libraries to Chef recipe for Shelby Rails App
+
+		libqt4-dev, libqtwebkit-dev, xvfb, jackd1 - for headless Webkit functional testing with Capybara
+
+	Removed obsolete dependencies from Chef recipe for Shelby Rails App
+
+		Redis
 
 * v0.2.1
 
@@ -21,6 +31,18 @@ This is a vagrant project for creating a box ready to install and run the Shelby
     Added onboard Postfix server for relaying emails to SendGrid
 
     Fixed environment variables for the Vagrantfile so that specifying NFS or VirtualBox shared folders works
+
+* v0.2
+
+    Switched to use NFS mounting by default for vagrant shared folder
+
+    Added environment variables to the Vagrantfile to allow dynamic configuration of shared folder
+
+    Installed latest version (4.1.8) of VirtualBox Guest Extensions on the packaged box
+
+* v0.1
+
+	First version of the box
 
 ---
 
