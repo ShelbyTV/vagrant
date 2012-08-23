@@ -39,6 +39,11 @@ when "debian", "ubuntu"
     notifies :run, "execute[apt-get update]", :immediately
   end
 
+  execute "apt-get update" do
+    command "apt-get update"
+    ignore_failure true
+  end
+
   package "mongodb" do
     package_name "mongodb-10gen"
   end
