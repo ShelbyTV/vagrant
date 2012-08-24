@@ -32,6 +32,12 @@ package "jackd1" do
   action :install
 end
 
+# need imagemagick for capybara-webkit to take screenshots within headless
+# browser for debugging
+package "imagemagick" do
+  action :install
+end
+
 require_recipe "shelby::memcached-pre"
 
 # invoke recipes to install all necessary components

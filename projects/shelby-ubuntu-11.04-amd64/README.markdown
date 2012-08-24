@@ -18,7 +18,7 @@ This is a vagrant project for creating a box ready to install and run the Shelby
 
 	Added new libraries to Chef recipe for Shelby Rails App
 
-		libqt4-dev, libqtwebkit-dev, xvfb, jackd1 - for headless Webkit functional testing with Capybara
+		libqt4-dev, libqtwebkit-dev, xvfb, jackd1, imagemagick - for headless Webkit acceptance testing with Capybara
 
 	Removed obsolete dependencies from Chef recipe for Shelby Rails App
 
