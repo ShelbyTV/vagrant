@@ -2,6 +2,14 @@ This is a vagrant project for creating a box ready to install and run the Shelby
 
 # CHANGELOG:
 
+* v0.2.3
+
+  Updated all apt managed packages
+
+  Upgraded Chef (10.16.2) and Ohai (6.14.0) to latest versions
+
+  Installed latest version (4.2.4) of VirtualBox Guest Extensions
+
 * v0.2.2
 
 	Upgraded Chef gem to latest version (10.12.0)
