@@ -2,6 +2,10 @@ This is a vagrant project for creating a box ready to install and run the Shelby
 
 # CHANGELOG:
 
+* v0.2.4-vanity-dev
+
+  Includes all libraries and database servers necessary to run Vanity's tests (for those who are deving on our Vanity fork)
+
 * v0.2.4
 
   Installed rvm rubies ruby-1.9.3-p327 and ruby-1.9.3-p320 with p327 as the default
