@@ -2,6 +2,10 @@ This is a vagrant project for creating a box ready to install and run the Shelby
 
 # CHANGELOG:
 
+* v0.2.4
+
+  Brought back redis since it's needed by Vanity, which is now used in shelby-gt-web
+
 * v0.2.3
 
   Updated all apt managed packages
