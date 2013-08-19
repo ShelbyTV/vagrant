@@ -7,10 +7,10 @@
 #
 # $ vagrant package --vagrantfile Vagrantfile.package
 
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
   # Assign this VM to a host only network IP, allowing you to access it
   # via the IP.
-  config.vm.network :hostonly, "33.33.33.10"
+  config.vm.network :private_network, ip: "33.33.33.10"
 
   # Enable ssh agent forwarding so that SSH from the VM can authenticate with
   # SSH keys from the host machine
@@ -21,5 +21,5 @@ Vagrant::Config.run do |config|
   # folder, and the third is the path on the host to the actual folder.
   host_shelby_folder = ENV["shelby_folder"] || "~/ShelbyTV"
   use_nfs = !ENV["use_virtual_box_shared_folders"]
-  config.vm.share_folder "ShelbyTV", "/shelbytv", host_shelby_folder, :nfs => use_nfs
+  config.vm.synced_folder host_shelby_folder, "/shelbytv", :nfs => use_nfs
 end

@@ -1,6 +1,16 @@
-This is a vagrant project for creating a box ready to install and run the Shelby rails app on Ubuntu 11.04 for amd64.
+This is a vagrant project for creating a box ready to install and run the Shelby rails app on Ubuntu 12.04 for amd64.
 
 # CHANGELOG:
+
+* v0.3
+
+  Packaged box now running Ubuntu 12.04 (11.04 had reached end of life)
+
+  Vagrantfiles brought up to date with latest Vagrant (1.2.7)
+
+  Includes java so YUI compressor will work during asset precompilation
+
+  Transitioned to using our global shelby-chef-repo (ShelbyTV/shelby-chef-repo) for provisioning the vagrant box.  The chef folder here now exists only for historical reasons.
 
 * v0.2.4-vanity-dev
 
@@ -44,19 +54,19 @@ This is a vagrant project for creating a box ready to install and run the Shelby
 
 * v0.2.1
 
-    Upgraded to work with newest version of Vagrant (1.0.0)
+  Upgraded to work with newest version of Vagrant (1.0.0)
 
-    Added onboard Postfix server for relaying emails to SendGrid
+  Added onboard Postfix server for relaying emails to SendGrid
 
-    Fixed environment variables for the Vagrantfile so that specifying NFS or VirtualBox shared folders works
+  Fixed environment variables for the Vagrantfile so that specifying NFS or VirtualBox shared folders works
 
 * v0.2
 
-    Switched to use NFS mounting by default for vagrant shared folder
+  Switched to use NFS mounting by default for vagrant shared folder
 
-    Added environment variables to the Vagrantfile to allow dynamic configuration of shared folder
+  Added environment variables to the Vagrantfile to allow dynamic configuration of shared folder
 
-    Installed latest version (4.1.8) of VirtualBox Guest Extensions on the packaged box
+  Installed latest version (4.1.8) of VirtualBox Guest Extensions on the packaged box
 
 * v0.1
 

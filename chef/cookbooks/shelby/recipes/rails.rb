@@ -41,6 +41,7 @@ end
 require_recipe "shelby::memcached-pre"
 
 # invoke recipes to install all necessary components
+require_recipe "java"
 require_recipe "memcached"
 require_recipe "git"
 require_recipe "mongodb::10gen_repo"

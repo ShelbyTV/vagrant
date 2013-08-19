@@ -1,17 +1,19 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
+  config.omnibus.chef_version = "10.26.0"
+
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu-11.04-server-amd64-virtualbox-4.1.20"
+  config.vm.box = "precise-server-cloudimg-vagrant-amd64"
 
   # Assign this VM to a host only network IP, allowing you to access it
   # via the IP.
-  config.vm.network :hostonly, "33.33.33.10"
+  config.vm.network :private_network, ip: "33.33.33.10"
 
   # Enable ssh agent forwarding so that SSH from the VM can authenticate with
   # SSH keys from the host machine
@@ -22,16 +24,16 @@ Vagrant::Config.run do |config|
   # folder, and the third is the path on the host to the actual folder.
   host_shelby_folder = ENV["shelby_folder"] || "~/ShelbyTV"
   use_nfs = !ENV["use_virtual_box_shared_folders"]
-  config.vm.share_folder "ShelbyTV", "/shelbytv", host_shelby_folder, :nfs => use_nfs
+  config.vm.synced_folder host_shelby_folder, "/shelbytv", :nfs => use_nfs
 
-  config.package.name = "shelby-ubuntu-11.04-amd64.box"
+  config.package.name = "shelby-ubuntu-12.04-amd64.box"
 
   # Enable provisioning with chef solo, specifying a cookbooks path (relative
   # to this Vagrantfile), and adding some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
   #  chef.log_level = "debug"
-    chef.cookbooks_path = "../../chef/cookbooks"
-    chef.add_recipe "shelby"
+    chef.cookbooks_path = "~/Documents/src/shelby-chef-repo/cookbooks/"
+    chef.add_recipe "shelby::shelby_vagrant"
   end
 end
